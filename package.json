@@ -1,0 +1,25 @@
+{
+  "name": "dumbdaemon",
+  "version": "1.0.0",
+  "description": "Code for demonstrating a daemon that does nothing more than use a cron job to log output every second",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reselbob/dumbdaemon.git"
+  },
+  "keywords": [
+    "demo"
+  ],
+  "author": "Bob Reselman <reselbob@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reselbob/dumbdaemon/issues"
+  },
+  "homepage": "https://github.com/reselbob/dumbdaemon#readme",
+  "dependencies": {
+    "cron": "^1.7.1"
+  }
+}

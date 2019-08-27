@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: dumb-daemonset
+spec:
+  template:
+    metadata:
+      labels:
+        name: dumbdaemon # Pod template's label selector
+    spec:
+      containers:
+      - name: dumbdaemon
+        image: reselbob/dumbdaemon:v0.1
+        imagePullPolicy: IfNotPresent
+      nodeSelector:
+          stooge: moe
+  selector:
+      matchLabels:
+        name: dumbdaemon # Label selector that determines which Pods belong to the DaemonSet
