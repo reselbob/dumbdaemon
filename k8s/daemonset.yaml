@@ -12,6 +12,9 @@ spec:
       - name: dumbdaemon
         image: reselbob/dumbdaemon:v0.1
         imagePullPolicy: IfNotPresent
+        env:
+          - name: DUMBDAEMON_STOOGE
+            value: "moe"
       nodeSelector:
           stooge: moe
   selector:
