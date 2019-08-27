@@ -13,7 +13,7 @@ according to the interval declared in the env var DUMBDAEMON_EMISSION_INTERVAL.
  A string that describes the interval at which to emit a log entry. Use [standard cron format](http://www.nncron.ru/help/EN/working/cron-format.htm) notation.
  The default value is `* * * * * *`.
  
- # Assigning `dumbdaemon` to a node in a Kubernetes cluster
+ # Assigning `dumbdaemon` as a DaemonSet to a node in a Kubernetes cluster
  
 Go the Katacoda Kubernete Playbround [here](https://katacoda.com/courses/kubernetes/playground).
 
@@ -55,7 +55,7 @@ Why aren't things working? Take a look at the manifest for the daemonset:
 
 `cat k8s/daemonset.yaml`
 
-Notice that the container has an attribute, `nodeSelector` set to `stooge=moe`.
+Notice that the container has an attribute, `nodeSelector` set to `stooge:moe`.
 
 When you run, `kubectl describe node node01` you'll observe that `node01` has no label `stooge=moe`.
 
@@ -76,4 +76,33 @@ dumb-daemonset   1         1         0       1            0           stooge=moe
 
 Next, let take a look the logs from the daemonset's container. Get the pod name:
 
-`kubectrl get pods`
+`kubectl get pods`
+
+Then look at the logs.
+
+`kubectl logs <dumb-daemonset-SOME_ID`
+
+You'll see output similar to the following:
+
+```text
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:11.001Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:12.002Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:13.001Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:14.001Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:15.002Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:16.001Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:17.001Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:18.001Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:19.001Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:20.002Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:21.003Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:22.003Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:23.002Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:24.002Z }
+{ stooge: 'moe', emitTime: 2019-08-27T21:28:25.002Z }
+```
+
+The [daemonset](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) has been successfully installed
+and is operational.
+
+**Congratulations!** Now, go buy yourself an ice cream cone!
