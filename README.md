@@ -74,13 +74,13 @@ NAME             DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELEC
 dumb-daemonset   1         1         0       1            0           stooge=moe      9m7s
 ```
 
-Next, let take a look the logs from the daemonset's container. Get the pod name:
+Next, let take a look at the logs from the daemonset's container. Get the pod name:
 
 `kubectl get pods`
 
 Then look at the logs.
 
-`kubectl logs <dumb-daemonset-SOME_ID`
+`kubectl logs -l name=dumbdaemon`
 
 You'll see output similar to the following:
 
